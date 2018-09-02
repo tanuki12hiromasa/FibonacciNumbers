@@ -9,16 +9,6 @@ namespace Fibonacci
 {
     public class FibonacciNumber
     {
-        static void Main(string[] args)
-        {
-            int num;
-            if (args.Length < 1) num = 8;
-            else num = int.Parse(args[0]);
-            if (num <= 0) num = 1;
-            var fib = calcFib(num, true);
-            Console.WriteLine(num + "項目のフィボナッチ数は" + fib);
-        }
-
         public static BigInteger calcFib(int num,bool showProgress=false)
         {
             num = num - 1;
@@ -26,13 +16,15 @@ namespace Fibonacci
                 Console.WriteLine((num+1) + "-1=" + num.ToString("X"));
             int order = 1;
             var FN = new BigIntMat(1, 1, 1, 0);
-            var sum = new BigIntMat(0, 0, 0, 0);
-            while (num > order)
+            var sum = new BigIntMat(1, 0, 0, 1);
+            while (num >= order)
             {
                 if ((num & order) != 0)
                 {
-                    sum += FN;
+                    sum = sum * FN;
                 }
+                if(showProgress)
+                    Console.WriteLine("order="+order+",sum=({0},{1},{2},{3})",sum.M11,sum.M12,sum.M21,sum.M22);
                 order = order << 1;
                 FN = FN * FN;
             }
