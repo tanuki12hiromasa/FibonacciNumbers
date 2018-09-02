@@ -11,7 +11,7 @@ namespace FibConsole
             else num = int.Parse(args[0]);
             if (num <= 0) num = 1;
             var fib = Fibonacci.FibonacciNumber.calcFib(num, true);
-            Console.WriteLine(num + "項目のフィボナッチ数は" + fib);
+            Console.WriteLine("フィボナッチ数列の" + num + "項目は" + fib);
         }
     }
 }
